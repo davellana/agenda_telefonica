@@ -2,13 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D3EBF2">
+    android:background="#D3EBF2"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:padding="20dp">
 
         <TextView
@@ -16,87 +17,152 @@
             android:layout_height="wrap_content"
             android:text="Dades del contacte"
             android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_margin="20dp"/>
+            android:textColor="#205050"
+            android:layout_marginBottom="20dp"/>
 
-        <EditText
-            android:id="@+id/txtNom"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nom"
+            android:orientation="vertical"
+            android:padding="15dp"
             android:background="#FFFFFF"
-            android:padding="10dp"/>
+            android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/txtNCognoms"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dades personals"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#255C68"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/txtNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/txtNCognoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cognoms"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cognoms"
+            android:orientation="vertical"
+            android:padding="15dp"
             android:background="#FFFFFF"
-            android:padding="10dp"/>
+            android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/txtAdreca"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Informació de contacte"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#255C68"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/txtNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telèfon"
+                android:inputType="phone"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correu electrònic"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/txtAdreca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adreça"
+                android:inputType="textPostalAddress"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Adreça"
+            android:orientation="vertical"
+            android:padding="15dp"
             android:background="#FFFFFF"
-            android:padding="10dp"/>
+            android:layout_marginBottom="20dp">
 
-        <EditText
-            android:id="@+id/txtNum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telèfon"
-            android:inputType="phone"
-            android:background="#FFFFFF"
-            android:padding="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Altres dades"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#255C68"
+                android:layout_marginBottom="10dp"/>
 
-        <EditText
-            android:id="@+id/txtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correu electrònic"
-            android:inputType="textEmailAddress"
-            android:background="#FFFFFF"
-            android:padding="10dp"/>
+            <EditText
+                android:id="@+id/txtData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data de naixement"
+                android:inputType="date"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
 
-        <EditText
-            android:id="@+id/txtData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data de naixement"
-            android:inputType="date"
-            android:background="#FFFFFF"
-            android:padding="10dp"/>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="15dp"
-            android:background="#205050"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_eliminar"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Eliminar contacte"
             android:backgroundTint="#953636"/>
 
-        <Button
-            android:id="@+id/btnCancelar"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel·lar"
-            android:backgroundTint="#953636"/>
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btnConfirmar"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:backgroundTint="#346825"/>
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Cancel·lar"
+                android:backgroundTint="#953636"/>
+
+            <Button
+                android:id="@+id/btnConfirmar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Guardar"
+                android:backgroundTint="#346825"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

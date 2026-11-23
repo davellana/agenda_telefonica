@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,7 @@ public class ContacteAdapter extends ArrayAdapter<Contacte> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context)
-                    .inflate(R.layout.item_contacte, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_contacte, parent, false);
         }
 
         Contacte contacte = contactes.get(position);
@@ -37,6 +37,7 @@ public class ContacteAdapter extends ArrayAdapter<Contacte> {
         TextView txtNombre = convertView.findViewById(R.id.txtNombre);
         ImageButton btnEditar = convertView.findViewById(R.id.btn_editar);
         ImageButton btnLlamar = convertView.findViewById(R.id.btn_llamar);
+        ImageButton btnEmail = convertView.findViewById(R.id.btn_email);
 
         txtNombre.setText(contacte.getName() + " " + contacte.getSurname() + "\n" + contacte.getNumber());
 
@@ -48,10 +49,25 @@ public class ContacteAdapter extends ArrayAdapter<Contacte> {
         });
 
         btnLlamar.setOnClickListener(v -> {
+            if (contacte.getNumber() == null || contacte.getNumber().trim().isEmpty()) {
+                Toast.makeText(context, "Aquest contacte no té telèfon", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + contacte.getNumber()));
             context.startActivity(intent);
 
+        });
+
+        btnEmail.setOnClickListener(v -> {
+            if (contacte.getEmail() == null || contacte.getEmail().trim().isEmpty()) {
+                Toast.makeText(context, "Aquest contacte no té correu electrònic", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + contacte.getEmail().trim()));
+            context.startActivity(intent);
         });
 
         return convertView;

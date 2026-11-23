@@ -1,8 +1,8 @@
-
 package com.example.agenda;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -36,23 +36,19 @@ public class ContacteActivity extends AppCompatActivity {
         position = getIntent().getIntExtra("position", -1);
 
         if (position == -1) {
-
-            btnEliminar.setVisibility(android.view.View.GONE);
-
+            btnEliminar.setVisibility(View.GONE);
         } else {
-
-            // Carreguem les dades del contacte.
-            // Les dades s'envien des de MainActivity mitjançant un ArrayList estàtic.
             Contacte contacte = MainActivity.contactes.get(position);
+
             txtNom.setText(contacte.getName());
             txtCognoms.setText(contacte.getSurname());
             txtAdreca.setText(contacte.getAddress());
             txtNum.setText(contacte.getNumber());
             txtEmail.setText(contacte.getEmail());
             txtData.setText(contacte.getBirthDate());
-
         }
 
+        // Botó de confirmar.
         btnConfirmar.setOnClickListener(v -> {
 
             String nom = txtNom.getText().toString().trim();
@@ -62,37 +58,46 @@ public class ContacteActivity extends AppCompatActivity {
             String email = txtEmail.getText().toString().trim();
             String data = txtData.getText().toString().trim();
 
-            if (nom.isEmpty() || numero.isEmpty()) {
+            if (nom.isEmpty()) {
                 txtNom.setError("El nom és obligatori");
+                txtNom.requestFocus();
                 return;
             }
 
-            Intent result = new Intent();
+            if (numero.isEmpty()) {
+                txtNum.setError("El telèfon és obligatori");
+                txtNum.requestFocus();
+                return;
+            }
 
-            result.putExtra("position", position);
-            result.putExtra("name", nom);
-            result.putExtra("surname", cognoms);
-            result.putExtra("address", adreca);
-            result.putExtra("number", numero);
-            result.putExtra("email", email);
-            result.putExtra("birthDate", data);
+            Intent resultat = new Intent();
 
-            setResult(RESULT_OK, result);
+            resultat.putExtra("position", position);
+            resultat.putExtra("name", nom);
+            resultat.putExtra("surname", cognoms);
+            resultat.putExtra("address", adreca);
+            resultat.putExtra("number", numero);
+            resultat.putExtra("email", email);
+            resultat.putExtra("birthDate", data);
+
+            setResult(RESULT_OK, resultat);
             finish();
-
         });
 
-        btnCancelar.setOnClickListener(v -> finish());
+        btnCancelar.setOnClickListener(v -> {
+            setResult(RESULT_CANCELED);
+            finish();
+        });
 
         btnEliminar.setOnClickListener(v -> {
 
-            Intent result = new Intent();
-            result.putExtra("position", position);
-            result.putExtra("deleted", true);
+            Intent resultat = new Intent();
 
-            setResult(RESULT_OK, result);
+            resultat.putExtra("position", position);
+            resultat.putExtra("deleted", true);
+
+            setResult(RESULT_OK, resultat);
             finish();
-
         });
     }
 }
