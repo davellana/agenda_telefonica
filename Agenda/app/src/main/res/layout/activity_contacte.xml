@@ -20,7 +20,18 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="#205050"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txtError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#953636"
+            android:visibility="gone"
+            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +79,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informació de contacte"
+                android:text="Dades de contacte"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#255C68"
@@ -92,14 +103,7 @@
                 android:backgroundTint="#255C68"
                 android:padding="10dp"/>
 
-            <EditText
-                android:id="@+id/txtAdreca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Adreça"
-                android:inputType="textPostalAddress"
-                android:backgroundTint="#255C68"
-                android:padding="10dp"/>
+
 
         </LinearLayout>
 
@@ -126,6 +130,15 @@
                 android:layout_height="wrap_content"
                 android:hint="Data de naixement"
                 android:inputType="date"
+                android:backgroundTint="#255C68"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/txtAdreca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adreça"
+                android:inputType="textPostalAddress"
                 android:backgroundTint="#255C68"
                 android:padding="10dp"/>
 

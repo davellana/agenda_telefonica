@@ -1,4 +1,3 @@
-
 package com.example.agenda;
 
 import android.app.Activity;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,25 +42,27 @@ public class ContacteAdapter extends ArrayAdapter<Contacte> {
         btnEditar.setOnClickListener(v -> {
             Intent intent = new Intent(context, ContacteActivity.class);
             intent.putExtra("position", position);
-            context.startActivityForResult(intent, 1);
-
+            context.startActivityForResult(intent, MainActivity.REQUEST_CONTACTE);
         });
 
         btnLlamar.setOnClickListener(v -> {
             if (contacte.getNumber() == null || contacte.getNumber().trim().isEmpty()) {
-                Toast.makeText(context, "Aquest contacte no té telèfon", Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).mostrarMissatge("Aquest contacte no té telèfon", true);
+                }
                 return;
             }
 
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + contacte.getNumber()));
             context.startActivity(intent);
-
         });
 
         btnEmail.setOnClickListener(v -> {
             if (contacte.getEmail() == null || contacte.getEmail().trim().isEmpty()) {
-                Toast.makeText(context, "Aquest contacte no té correu electrònic", Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).mostrarMissatge("Aquest contacte no té correu electrònic", true);
+                }
                 return;
             }
             Intent intent = new Intent(Intent.ACTION_SENDTO);

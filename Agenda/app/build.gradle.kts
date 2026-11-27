@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -27,10 +28,16 @@ android {
             }
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+// Mostrar advertencias de métodos obsoletos de Java
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("-Xlint:deprecation")
 }
 
 dependencies {

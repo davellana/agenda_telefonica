@@ -23,6 +23,17 @@
         android:layout_height="3dp"
         android:background="#205050"/>
 
+    <TextView
+        android:id="@+id/txtMissatge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#953636"
+        android:padding="8dp"
+        android:visibility="gone"/>
+
     <ListView
         android:id="@+id/lvContactes"
         android:layout_width="match_parent"
@@ -39,7 +50,7 @@
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Afegir contacte"
+        android:text="+ Afegir contacte"
         android:backgroundTint="#255C68"/>
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ public class ContacteActivity extends AppCompatActivity {
 
     private EditText txtNom, txtCognoms, txtAdreca;
     private EditText txtNum, txtEmail, txtData;
+    private TextView txtError;
 
     private Button btnConfirmar, btnCancelar, btnEliminar;
 
@@ -28,6 +30,7 @@ public class ContacteActivity extends AppCompatActivity {
         txtNum = findViewById(R.id.txtNum);
         txtEmail = findViewById(R.id.txtEmail);
         txtData = findViewById(R.id.txtData);
+        txtError = findViewById(R.id.txtError);
 
         btnConfirmar = findViewById(R.id.btnConfirmar);
         btnCancelar = findViewById(R.id.btnCancelar);
@@ -38,14 +41,16 @@ public class ContacteActivity extends AppCompatActivity {
         if (position == -1) {
             btnEliminar.setVisibility(View.GONE);
         } else {
-            Contacte contacte = MainActivity.contactes.get(position);
+            if (position >= 0 && position < MainActivity.contactes.size()) {
+                Contacte contacte = MainActivity.contactes.get(position);
 
-            txtNom.setText(contacte.getName());
-            txtCognoms.setText(contacte.getSurname());
-            txtAdreca.setText(contacte.getAddress());
-            txtNum.setText(contacte.getNumber());
-            txtEmail.setText(contacte.getEmail());
-            txtData.setText(contacte.getBirthDate());
+                txtNom.setText(contacte.getName());
+                txtCognoms.setText(contacte.getSurname());
+                txtAdreca.setText(contacte.getAddress());
+                txtNum.setText(contacte.getNumber());
+                txtEmail.setText(contacte.getEmail());
+                txtData.setText(contacte.getBirthDate());
+            }
         }
 
         // Botó de confirmar.
@@ -59,13 +64,13 @@ public class ContacteActivity extends AppCompatActivity {
             String data = txtData.getText().toString().trim();
 
             if (nom.isEmpty()) {
-                txtNom.setError("El nom és obligatori");
+                mostrarError("El nom és obligatori");
                 txtNom.requestFocus();
                 return;
             }
 
             if (numero.isEmpty()) {
-                txtNum.setError("El telèfon és obligatori");
+                mostrarError("El telèfon és obligatori");
                 txtNum.requestFocus();
                 return;
             }
@@ -90,7 +95,6 @@ public class ContacteActivity extends AppCompatActivity {
         });
 
         btnEliminar.setOnClickListener(v -> {
-
             Intent resultat = new Intent();
 
             resultat.putExtra("position", position);
@@ -99,5 +103,12 @@ public class ContacteActivity extends AppCompatActivity {
             setResult(RESULT_OK, resultat);
             finish();
         });
+    }
+
+    private void mostrarError(String missatge) {
+        if (txtError != null) {
+            txtError.setText(missatge);
+            txtError.setVisibility(View.VISIBLE);
+        }
     }
 }
